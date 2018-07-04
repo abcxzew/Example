@@ -3,8 +3,8 @@
     就讀於東吳大學財務工程與精算數學系 三年級    
     請多多指教 謝謝大家  
 ## Week1
-school  
+* School  
         1.Github創建帳號  
         2.基本資料  
 [hw1](https://abcxzew.github.io/Example/week1/hw1.html)  
-home  
+* Home  

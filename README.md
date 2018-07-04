@@ -6,5 +6,5 @@
 school  
         1.Github創建帳號  
         2.基本資料  
-[hw1](https://abcxzew.github.io/Example/week1/hw1.html)
+[hw1](https://abcxzew.github.io/Example/week1/hw1.html)  
 home  

@@ -5,7 +5,6 @@
 ## Week1
 * School  
         1.Github創建帳號  
-        2.基本資料
-[ex1](https://abcxzew.github.io/Example/week1/ex1.html)       
-[hw1](https://abcxzew.github.io/Example/week1/hw1.html)  
+        2.基本資料  
+[ex1](https://abcxzew.github.io/Example/week1/ex1.html)  
 * Home  

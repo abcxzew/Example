@@ -9,3 +9,4 @@
 [ex1](https://abcxzew.github.io/Example/week1/ex1.html)  
 * Home  
         1.練習R語言   
+[hw1](https://abcxzew.github.io/Example/week1/hw1.html) 

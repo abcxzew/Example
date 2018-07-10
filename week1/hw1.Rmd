@@ -6,7 +6,7 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
+學會設計問題，讓程式跑答案
 ## 基本運算  
 *求餘數  
 9%%5  
@@ -22,11 +22,16 @@ knitr::opts_chunk$set(echo = TRUE)
 [1] TRUE  
 
 ## Vectors(向量)  
-*Each of the vectors contains the number of profile views your LinkedIn and Facebook profiles had over the last seven days.  
+*每個向量代表過去7天瀏覽個人資料的次數   
 linkedin <- c(16, 9, 13, 5, 2, 17, 14)  
 facebook <- c(17, 7, 5, 16, 8, 13, 14)  
 When was your LinkedIn profile visited more often than your Facebook profile?  
 # LinkedIn more popular than Facebook  
 linkedin > facebook  
-[1] FALSE  TRUE  TRUE FALSE FALSE  TRUE FALSE  
+[1] FALSE  TRUE  TRUE FALSE FALSE  TRUE FALSE   
+
+##邏輯運算符號  
+and-& : only TRUE if both are TRUE  
+or-|  : only FALSE if both are FLASE  
+not-! : !TRUE [1]FALSE  
 

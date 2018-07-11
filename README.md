@@ -14,4 +14,6 @@
 ### Week2  
 * School  
         1.資料視覺化      
-[ex2-part1](https://abcxzew.github.io/Example/week2/ex2.html)         
+[ex2-part1](https://abcxzew.github.io/Example/week2/ex2.html)        
+        2.文字雲    
+[ex2-part2](https://abcxzew.github.io/Example/week2/ex2-part2.html)          

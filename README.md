@@ -10,3 +10,8 @@
 * Home  
         1.練習R語言   
 [hw1](https://abcxzew.github.io/Example/week1/hw1.html) 
+
+### Week2  
+* School  
+        1.資料視覺化    
+[ex2](https://abcxzew.github.io/Example/week2/ex2.html)    

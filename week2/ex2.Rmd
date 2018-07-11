@@ -8,9 +8,12 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-單變數:類別型
 ```{r}
 library(ggplot2)
+CO2
+```
+單變數:類別型
+```{r}
 ggplot(data = CO2, aes(x = Type))+
   geom_bar(fill = "lightblue", colour = "black")
 ```

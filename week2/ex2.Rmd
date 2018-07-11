@@ -12,29 +12,29 @@ knitr::opts_chunk$set(echo = TRUE)
 library(ggplot2)
 CO2
 ```
-單變數:類別型
+#單變數:類別型
 ```{r}
 ggplot(data = CO2, aes(x = Type))+
   geom_bar(fill = "lightblue", colour = "black")
 ```
-單變數:連續型
+#單變數:連續型
 ```{r}
 ggplot(data = CO2, aes(x = uptake))+
   geom_histogram()
 ##stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
-雙變數:連續vs連續
+#雙變數:連續vs連續
 ```{r}
 ggplot(data = CO2, aes(x = conc, y = uptake))+
   geom_point()
 ```
-雙變數:離散vs連續
+#雙變數:離散vs連續
 ```{r}
 ggplot(CO2, aes(x = Type, y = uptake))+
   geom_boxplot()
 ```
 
-多變量:攝取的二氧化碳總體關係
+#多變量:攝取的二氧化碳總體關係
 ```{r}
 library(ggplot2)
 library(GGally)

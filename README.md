@@ -14,4 +14,4 @@
 ### Week2  
 * School  
         1.資料視覺化    
-[ex1](https://abcxzew.github.io/Example/week2/ex2.html)  
+[ex2](https://abcxzew.github.io/Example/week2/ex2.html)  

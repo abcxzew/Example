@@ -16,4 +16,7 @@
         1.資料視覺化      
 [ex2-part1](https://abcxzew.github.io/Example/week2/ex2.html)        
         2.文字雲    
-[ex2-part2](https://abcxzew.github.io/Example/week2/ex2-part2.html)          
+[ex2-part2](https://abcxzew.github.io/Example/week2/ex2-part2.html)    
+* Home  
+        1.練習文字雲   
+[hw2](https://abcxzew.github.io/Example/week2/hw2/hw2.html)         

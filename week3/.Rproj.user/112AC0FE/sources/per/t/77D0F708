@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1531892995501.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "155275014",
+    "id" : "77D0F708",
+    "lastKnownWriteTime" : 1531898138,
+    "last_content_update" : 1531898138196,
+    "path" : "C:/Users/abcxz/Desktop/example/week3/TFIDFtoPCA.R",
+    "project_path" : "TFIDFtoPCA.R",
+    "properties" : {
+        "cursorPosition" : "76,19",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

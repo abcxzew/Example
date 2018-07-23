@@ -1,0 +1,11 @@
+library(tm)
+library(tmcn)
+library(Matrix)
+library(wordcloud)
+
+docs <- readLines("CRISIS.txt")
+docs <- gsub("\\[[0-9]+\\]", "", docs)
+docs.corpus <- Corpus(VectorSource(docs))
+docs.seg <- tm_map(docs.corpus, segmentCN)
+docs.tdm <- TermDocumentMatrix(docs.seg, control = list())
+inspect(docs.tdm)

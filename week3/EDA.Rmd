@@ -1,0 +1,80 @@
+---
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+#Data From https://www.kaggle.com/niyamatalmass/google-job-skills
+*rmd要先處存
+```{r}
+TestData = read.csv('./DATA/job_skills.csv', quote = "", 
+                 row.names = NULL, 
+                 stringsAsFactors = FALSE)
+str(TestData)
+
+```
+
+#公司種類與地區分佈關係
+```{r, include=FALSE, echo = FALSE}
+library(data.table)
+library(ggplot2)
+library(sqldf)
+library(rworldmap)
+library(ggmap)
+library(mapproj)
+library(ggplot2)
+library(maptools)
+library(maps)
+library(wordcloud)
+# library(qdap)
+library(tm)
+library(stringr)
+library(SnowballC)   
+library(Tmisc)
+library(scales)
+
+# =================================================================== #
+# Defining all custom functions at the beginning.
+# =================================================================== #
+# function to aggregate text specific to a single publisher/ media house.
+create_text<- function( datadf )
+{
+    print(nrow(datadf))
+    # creating empty array
+    textarrdf = c(" ")
+    
+    for(i in 1:nrow(datadf))
+    { 
+        temp_arr1 = datadf[i, "Responsibilities"]
+        temp_arr2 = datadf[i, "Min_qual"]
+        temp_arr3 = datadf[i, "Pref_qual"]
+        
+        textarrdf = paste(textarrdf, temp_arr1, temp_arr2, temp_arr3, sep = " ")
+        
+    }
+    
+    return(textarrdf)
+} 
+
+# function to copy to clipboard:
+copyfn <- function(z) write.table(z, "clipboard" , sep = "\t", row.names = F)
+
+```
+
+```{r, echo=TRUE, include=FALSE}
+# Read input file:
+youtube_skills <- data.frame(fread("./DATA/job_skills.csv"))
+
+colnames(youtube_skills) <- c("Company", "Title", "Category", "Location", "Responsibilities", "Min_qual",
+                             "Pref_qual")
+str(youtube_skills)
+
+```
+
+# Job Categories
+First, let us take a look at the job categories:
+```{r, echo = FALSE}
+table(youtube_skills$Category)
+```
+Surprisingly, there are more roles open for the "Marketing and Communications" and "Sales & Account Management" categories, as compared to the traditional technical business units. (like Software Engineering or networking)

@@ -1,0 +1,4 @@
+"0","TestData = read.csv('./DATA/job_skills.csv')"
+"2","cannot open file './DATA/job_skills.csv': No such file or directory"
+"2","Error in file(file, ""rt"") : cannot open the connection
+"

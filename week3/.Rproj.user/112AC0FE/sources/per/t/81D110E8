@@ -1,0 +1,24 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1531878758695.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2818831939",
+    "id" : "81D110E8",
+    "lastKnownWriteTime" : 1531892981,
+    "last_content_update" : 1531892981613,
+    "path" : "C:/Users/abcxz/Desktop/example/week3/EDA.Rmd",
+    "project_path" : "EDA.Rmd",
+    "properties" : {
+        "cursorPosition" : "17,12",
+        "last_setup_crc32" : "",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

@@ -11,7 +11,7 @@
         1.練習R語言   
 [hw1](https://abcxzew.github.io/Example/week1/hw1.html) 
 
-### Week2  
+## Week2  
 * School  
         1.資料視覺化      
 [ex2-part1](https://abcxzew.github.io/Example/week2/ex2.html)        
@@ -21,7 +21,7 @@
         1.練習文字雲   
 [hw2](https://abcxzew.github.io/Example/week2/hw2/hw2.html)         
 
-#### Week3    
+## Week3    
 * School    
         1.EDA處理問題    
         2.TFIDF->PCA->K-means 文字探勘    

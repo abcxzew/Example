@@ -20,3 +20,9 @@
 * Home  
         1.練習文字雲   
 [hw2](https://abcxzew.github.io/Example/week2/hw2/hw2.html)         
+
+#### Week3    
+* School    
+        1.EDA處理問題    
+        2.TFIDF->PCA->K-means 文字探勘    
+[ex3-part1](https://abcxzew.github.io/Example/week3/TFIDF.html)

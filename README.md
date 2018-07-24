@@ -24,6 +24,7 @@
 ## Week3    
 * School    
         1.EDA處理問題    
-        2.TFIDF->PCA->K-means 文字探勘    
+        2.TFIDF->PCA->K-means 文字探勘
+* Home        
 [TFIDF](https://abcxzew.github.io/Example/week3/TFIDF.html)    
 [TFIDF->Kmeans](https://abcxzew.github.io/Example/week3/tfidf到kmeans.html)    

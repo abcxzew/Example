@@ -14,8 +14,8 @@ TestData = read.csv('./DATA/job_skills.csv', quote = "",
 str(TestData)
 
 ```
+#Q:Youtube公司需要什麼人才
 
-#公司種類與地區分佈關係
 ```{r, include=FALSE, echo = FALSE}
 library(data.table)
 library(ggplot2)
@@ -72,9 +72,82 @@ str(youtube_skills)
 
 ```
 
-# Job Categories
-First, let us take a look at the job categories:
+# 工作類別
 ```{r, echo = FALSE}
 table(youtube_skills$Category)
 ```
-Surprisingly, there are more roles open for the "Marketing and Communications" and "Sales & Account Management" categories, as compared to the traditional technical business units. (like Software Engineering or networking)
+A: 1.Sales & Account Management(168)最多/2.Marketing & Communications (165)次之/3.Finance(115)    
+
+# 學歷
+a) 最低學歷要求    
+```{r, echo=FALSE, include=TRUE}
+youtube_skills$min_degree <- ifelse( grepl("Bachelor", youtube_skills$Min_qual) == TRUE, "Bachelor",
+                           ifelse( grepl("BA/BS", youtube_skills$Min_qual)==TRUE, "Bachelor",
+                           ifelse( grepl("Master", youtube_skills$Min_qual)==TRUE, "Master",
+                           ifelse( grepl("PhD", youtube_skills$Min_qual)== TRUE, "PhD", "other"))))
+
+ggplot(youtube_skills, aes(min_degree)) + 
+    geom_bar(aes(y = (..count..)/sum(..count..)), fill = "lightblue") + 
+    scale_y_continuous(labels=scales::percent) +
+    ylab("relative frequencies")
+```
+A:Bachelor(學士)    
+  
+b) youtube公司喜歡錄用什麼學歷    
+```{r, echo=FALSE, include=TRUE}
+youtube_skills$pref_degree <- ifelse( grepl("PhD", youtube_skills$Pref_qual) == TRUE, "PhD",
+                          ifelse( grepl("Master", youtube_skills$Pref_qual)==TRUE, "Master",
+                          ifelse( grepl("MBA", youtube_skills$Pref_qual)==TRUE, "Master",
+                          ifelse( grepl("MS", youtube_skills$Pref_qual)== TRUE, "Master", "Bachelor"))))
+
+ggplot(youtube_skills, aes(pref_degree)) + 
+    geom_bar(aes(y = (..count..)/sum(..count..)), fill = "lightblue") + 
+    scale_y_continuous(labels=scales::percent) +
+    ylab("relative frequencies")
+```
+A:Bachelor(學士)    
+
+#對於Youtube公司來說什麼最重要
+
+```{r, echo=FALSE, include=FALSE}
+
+
+text_dict_source <- subset(youtube_skills)
+
+row.names(text_dict_source) <- NULL
+
+
+text_sourcedf <- create_text( text_dict_source)
+
+text_sourcedf2 <- iconv(text_sourcedf, "latin1", "ASCII", sub="")
+
+text_sourcedf2 = tolower(text_sourcedf2)
+
+
+
+wordCorpus <- Corpus(VectorSource(text_sourcedf2))
+summary(wordCorpus)
+
+
+wordCorpus <- tm_map(wordCorpus, removePunctuation)
+wordCorpus <- tm_map(wordCorpus, removeNumbers)
+wordCorpus <- tm_map(wordCorpus, content_transformer(tolower))
+wordCorpus <- tm_map(wordCorpus, removeWords, stopwords("english"))
+wordCorpus <- tm_map(wordCorpus, stripWhitespace)
+wordCorpus <- tm_map(wordCorpus, stemDocument) 
+
+
+
+
+wordCorpus1 <- tm_map(wordCorpus, stemDocument)
+
+```
+
+```{r, echo=FALSE, include=TRUE}
+wordcloud(wordCorpus1, scale=c(5,0.5), max.words=100, random.order=FALSE, 
+          rot.per=0.35, use.r.layout=FALSE, colors = brewer.pal(8, "Dark2"))
+```    
+    
+A:最看重經驗，管理能力次之，最後是工作與個人能力    
+
+

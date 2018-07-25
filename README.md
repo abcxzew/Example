@@ -29,3 +29,9 @@
 [EDA](https://abcxzew.github.io/Example/week3/EDA.html)     
 [TFIDF](https://abcxzew.github.io/Example/week3/TFIDF.html)    
 [TFIDF->Kmeans](https://abcxzew.github.io/Example/week3/tfidf到kmeans.html)    
+
+## Week4    
+* School   
+        1.t-test與ANOVAX來探討變數間關係    
+        2.迴歸分析    
+* Home    

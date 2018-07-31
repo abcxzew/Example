@@ -34,4 +34,5 @@
 * School   
         1.t-test與ANOVAX來探討變數間關係    
         2.迴歸分析    
-* Home    
+* Home        
+[迴歸分析](https://abcxzew.github.io/Example/week4/happiness.html)    

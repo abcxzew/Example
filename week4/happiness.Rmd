@@ -1,4 +1,12 @@
+---
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
 #Data From https://www.kaggle.com/therabiulawal/art-of-happiness/notebook
+```{r}
 library(data.table)
 library(ggplot2)
 library(sqldf)
@@ -15,13 +23,16 @@ library(Tmisc)
 library(scales)
 library(heplots)
 library(effects)
+
 #記得確認檔案類型
+
 Happiness <- read.csv(file = "./DATA/2017.csv")
 str(Happiness)
 
 colnames (Happiness) <- c("Country", "Happiness.Rank", "Happiness.Score",
                           "Whisker.High", "Whisker.Low", "Economy", "Family", "Life.Expectancy", 
                           "Freedom", "Generosity", "Trust", "Dystopia.Residual")
+
 #創立新的一行，命名為區域
 
 Happiness$Continent <- NA
@@ -56,11 +67,12 @@ Happiness$Continent <- as.factor(Happiness$Continent)
 
 head(Happiness)
 summary(Happiness)
-
+```
 
 #第一部分:區域跟快樂指數有沒有關係
+```{r}
 library(Hmisc)
-tapply(Happiness.Score, Happiness$Continent, mean)
+
 ggplot(data=Happiness, aes(x=Happiness$Continent, y=Happiness.Score))+
   stat_summary(fun.data = 'mean_cl_boot', size=1)+
   scale_y_continuous(breaks = seq(1, 10, by = 1)) +
@@ -68,8 +80,10 @@ ggplot(data=Happiness, aes(x=Happiness$Continent, y=Happiness.Score))+
              linetype = 'dotted') +
   labs(x = '區域分布', y = '快樂指數') +
   coord_flip()
+```
 
 #快樂指數可能是跟區域內國家的GDP有關
+```{r}
 anova(m1<-lm(Happiness.Score~Happiness$Continent, data=Happiness))
 ggplot(data=Happiness, aes(group=Happiness$Continent,
                            y=Happiness.Score, x=Economy))+
@@ -80,8 +94,9 @@ ggplot(data=Happiness, aes(group=Happiness$Continent,
               method='lm',se=F)+
   facet_grid(.~Happiness$Continent)+
   labs(x='GDP',y='快樂指數')
-  
+```
 #運用ANOVA檢驗
+```{r}
 anova(m2<-update(m1, . ~ . +
                    Economy, data=Happiness))
 anova(m3<-update(m2, . ~ . -
@@ -93,18 +108,21 @@ anova(m3, m2)
 
 (res_lm[[2]]$r.sq - res_lm[[1]]$r.sq)/res_lm[[1]]$r.sq
 anova(m1,m2)
-
+```
 #畫圖
+```{r}
 require(coefplot)
 m2<-lm(Happiness.Score~Happiness$Continent+Economy- 1,
        data=Happiness)
 coefplot(m2, xlab='估計值', ylab='迴歸變項', title='反應變項=快樂指數')
-
+```
 #把資料與迴歸分析的預測值/殘差/影響度放入資料
+```{r}
 fit_m2<-data.frame(Happiness[, c(3, 6, 13)], fitted=fitted(m2), resid=resid(m2),
                    infl=influence(m2)$hat)
-
+```
 #觀測值合併預測值
+```{r}
 ggplot(data = fit_m2, aes(x = Happiness.Score, group = Continent )) +
   stat_density(geom = 'path', position = 'identity') +
   stat_density(geom = 'path', position = 'identity', aes(x = fitted)) +
@@ -112,52 +130,60 @@ ggplot(data = fit_m2, aes(x = Happiness.Score, group = Continent )) +
   facet_grid(Continent ~ .) +
   scale_x_continuous(breaks = seq(1, 10, by = 0.5))+
   labs(x = '快樂指數', y = '機率密度')
-
+```
 #根據殘差分配，依地區檢視常態與變異數同質假設
+```{r}
 ggplot(data=fit_m2, aes(x=scale(resid)), group=Happiness$Continent)+
   stat_density(geom='path', position='identity', aes(linetype=Continent))+
   scale_linetype_manual(values=6:1)+
   guides(linetype=guide_legend(reverse=TRUE))+
   labs(x='標準化殘差',y='機率密度')+
   theme(legend.position = c(.15, .8))
-
+```
 #根據殘差Q-Q圖，依地區檢視常態假設
+```{r}
 require(lattice)
 qqmath(~scale(resid)|Continent, data=fit_m2, type=c('p', 'g', 'r'),
        xlab='常態位數', ylab='標準化殘差', layout=c(2, 3),
        pch='.', cex=2)
-
+```
 #畫預測值與殘差散佈圖，檢查線性與等分散假設
+```{r}
 require(MASS)
 ggplot(data = fit_m2, aes(x = fitted, y = scale(resid), group = Continent)) +
   geom_point(pch = 20, size = 1) +
   stat_smooth(method = 'rlm', se = F) +
   facet_grid(Continent ~ .) +
   labs(x = '快樂指數預測值', y = '標準化殘差')
-
+```
 #呈現影響值與標準化殘差
+```{r}
 ggplot(data=fit_m2, aes(x=infl, y=scale(resid), group = Continent)) +
   geom_text(aes(label = rownames(fit_m2)), cex = 2) +
   geom_hline(yintercept = 0, linetype = 'dotted') +
   facet_grid(Continent ~ .) +
   labs(x = '影響值', y = '標準化殘差')
+```
 #影響值
+```{r}
 summary(influence(m2)$hat)
-
+```
 
 #第二部分:分析其他資料與快樂指數的關係
-
-
+```{r}
 Happiness_score<-Happiness[, c('Happiness.Score', 'Family', 'Life.Expectancy',
                                'Freedom', 'Generosity','Trust', 'Dystopia.Residual')]
 colMeans(Happiness_score)
-
+options(warn=-1)
 require(heplots)
 scatterplotMatrix(~ Happiness.Score + Family + Life.Expectancy
                   +Freedom+Generosity+Trust+Dystopia.Residual, data=Happiness_score ,
                   pch = '.', cex = 3, smooth = FALSE, reg.line = FALSE, ellipse = TRUE,
                   diagonal = 'none', lower.panel = NULL)
+
+```
 #各因素間的相關圖
+```{r}
 library("corrplot")
 Num.cols <- sapply(Happiness_score, is.numeric)
 Cor.data <- cor(Happiness_score[, Num.cols])
@@ -166,23 +192,27 @@ corrplot(Cor.data, method = 'color')
 
 newdatacor = cor(Happiness_score[c(1:7)])
 corrplot(newdatacor, method = "number")
-
+```
 #加入相關性高的因素
+```{r}
 summary(m4 <- lm( Happiness.Score~ Family+Life.Expectancy , data = Happiness))
 
 require(effects)
 plot(allEffects(m4), main = '', ylim = c(0, 10), grid = T)
-
+```
 #利用lm.beta套件，計算標準化迴歸係數
+```{r}
 library(lm.beta)
 summary(lm.beta(m4))
-
+```
 #把資料與迴歸分析的預測值/殘差/影響度放入資料
+```{r}
 m5<-lm(Happiness.Score~Continent+Family+Life.Expectancy,data=Happiness)
 fit_m5<-data.frame(Happiness[, c(3, 7, 8, 13)], fitted=fitted(m5), resid=resid(m5),
                    infl=influence(m5)$hat)
-
+```
 #觀測值合併預測值
+```{r}
 ggplot(data = fit_m5, aes(x = Happiness.Score, group = Continent )) +
   stat_density(geom = 'path', position = 'identity') +
   stat_density(geom = 'path', position = 'identity', aes(x = fitted)) +
@@ -190,3 +220,4 @@ ggplot(data = fit_m5, aes(x = Happiness.Score, group = Continent )) +
   facet_grid(Continent ~ .) +
   scale_x_continuous(breaks = seq(1, 10, by = 0.5))+
   labs(x = '快樂指數', y = '機率密度')
+```

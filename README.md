@@ -39,4 +39,11 @@
 
 ## Week5    
 * School    
-        練習shiny
+        練習shiny    
+
+## Week6    
+* School    
+        報告討論    
+* Home
+        1.製作報告    
+[報告呈現](https://abcxzew.shinyapps.io/final/)    

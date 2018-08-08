@@ -47,4 +47,4 @@
 * Home    
         製作報告    
 [Shiny呈現](https://abcxzew.shinyapps.io/final/)    
-[PPT呈現](https://docs.google.com/presentation/d/17CzWLTnE-lR538IDUP0zPEdpO8PiOMVOO3hv664qrA0/edit#slide=id.p6)    
+[PPT呈現](https://docs.google.com/presentation/d/17CzWLTnE-lR538IDUP0zPEdpO8PiOMVOO3hv664qrA0/edit#slide=id.p1)    
